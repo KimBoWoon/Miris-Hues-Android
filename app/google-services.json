@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "911730801758",
+    "firebase_url": "https://miris-c890a.firebaseio.com",
+    "project_id": "miris-c890a",
+    "storage_bucket": "miris-c890a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911730801758:android:fb59491c5cb4a32c",
+        "android_client_info": {
+          "package_name": "com.hues.miris_hues_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911730801758-a2lh091dqi24tn2li0iem127f520cd3t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVI_bqLSxSr2PlrE4ZqGWheXI1fsIsbJs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
