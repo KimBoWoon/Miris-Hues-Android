@@ -42,7 +42,7 @@ public class MainPresenter implements MainContract.UserAction {
     @Override
     public void viewJsonString() {
         try {
-            mOkHttp.run("https://miris.blob.core.windows.net/images/1485183837.jpg");
+            mOkHttp.run("http://miris-webapp.azurewebsites.net/tag");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@
     tools:context="com.hues.miris_hues_android.main.MainActivity">
 
     <TextView
+        android:id="@+id/main_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>
