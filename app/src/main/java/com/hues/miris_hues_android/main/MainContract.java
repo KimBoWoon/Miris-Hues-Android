@@ -9,6 +9,6 @@ public interface MainContract {
         void initView();
     }
     interface UserAction {
-        void viewJsonString();
+        void getJsonString();
     }
 }

@@ -3,7 +3,7 @@ package com.hues.miris_hues_android.okhttp;
 import android.os.Handler;
 import android.os.Message;
 
-import com.hues.miris_hues_android.log.Loging;
+import com.hues.miris_hues_android.log.Logging;
 
 import java.io.IOException;
 
@@ -17,16 +17,16 @@ import okhttp3.Response;
 
 public class DataGetThread extends Thread {
     private String url;
+    private OkHttpClient mClient;
 
     public DataGetThread(String url) {
         this.url = url;
+        mClient = new OkHttpClient();
     }
 
     @Override
     public void run() {
         super.run();
-
-        OkHttpClient mClient = new OkHttpClient();
 
         try {
             Request request = new Request.Builder().url(url).build();
@@ -34,7 +34,7 @@ public class DataGetThread extends Thread {
 
             while (true) {
                 if (response.isSuccessful()) {
-                    Loging.i(response.body().string());
+                    Logging.i(response.body().string());
                     handler.sendEmptyMessage(0);
                     break;
                 }
@@ -48,7 +48,7 @@ public class DataGetThread extends Thread {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {   // Message id 가 0 이면
-                Loging.i("Success");
+                Logging.i("Success");
             }
         }
     };

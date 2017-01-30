@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mMainPresenter = new MainPresenter(this);
         aq = new AQuery(this);
 
-        mMainPresenter.viewJsonString();
+        mMainPresenter.getJsonString();
 
         aq.id(R.id.main_text).text("Hello, World!");
     }

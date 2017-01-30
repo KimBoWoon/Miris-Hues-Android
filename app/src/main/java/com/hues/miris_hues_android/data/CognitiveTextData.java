@@ -4,7 +4,7 @@ package com.hues.miris_hues_android.data;
  * Created by secret on 1/27/17.
  */
 
-public class TextData {
+public class CognitiveTextData {
     private String textName;
     private double textConfidence;
 

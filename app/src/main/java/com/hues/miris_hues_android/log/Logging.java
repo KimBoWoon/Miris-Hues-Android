@@ -8,7 +8,7 @@ import com.hues.miris_hues_android.main.MainPresenter;
  * Created by secret on 1/29/17.
  */
 
-public class Loging {
+public class Logging {
     static final String TAG = "MirisHues";
 
     /**
