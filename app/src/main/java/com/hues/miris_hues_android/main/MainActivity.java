@@ -1,7 +1,7 @@
 package com.hues.miris_hues_android.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.androidquery.AQuery;
 import com.hues.miris_hues_android.R;

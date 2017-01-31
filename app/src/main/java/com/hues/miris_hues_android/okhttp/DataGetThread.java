@@ -3,9 +3,16 @@ package com.hues.miris_hues_android.okhttp;
 import android.os.Handler;
 import android.os.Message;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.hues.miris_hues_android.data.CognitiveTagData;
+import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,11 +41,9 @@ public class DataGetThread extends Thread {
 
             while (true) {
                 if (response.isSuccessful()) {
-                    Logging.i(response.body().string());
                     Message msg = Message.obtain();
                     msg.what = 0;
-//                    msg.obj = response.body().string();
-                    msg.obj = "qasdfzxcv";
+                    msg.obj = response.body().string();
                     handler.sendMessage(msg);
                     break;
                 }
@@ -48,11 +53,19 @@ public class DataGetThread extends Thread {
         }
     }
 
-    Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == 0) {   // Message id 가 0 이면
+            if (msg.what == 0) {
                 Logging.i(msg.obj.toString());
+                JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("tags");
+
+                List<CognitiveTagData> example1 = new Gson().fromJson(root, new TypeToken<List<CognitiveTagData>>() {}.getType());
+                DataManager.getInstance().setTagDatas(example1);
+
+                Logging.i(DataManager.getInstance().getTagDatas().get(0).getTagName());
+                Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().get(0).getTagConfidence()));
+
                 Logging.i("Success");
             }
         }
