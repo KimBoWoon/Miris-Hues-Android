@@ -1,13 +1,13 @@
 package com.hues.miris_hues_android.data;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Null on 2017-01-31.
  */
 public class DataManager {
     private static DataManager ourInstance = new DataManager();
-    private List<CognitiveTagData> tagDatas;
+    private ArrayList<CognitiveTagData> tagDatas = new ArrayList<CognitiveTagData>();
 
     public static DataManager getInstance() {
         return ourInstance;
@@ -16,11 +16,11 @@ public class DataManager {
     private DataManager() {
     }
 
-    public List<CognitiveTagData> getTagDatas() {
+    public ArrayList<CognitiveTagData> getTagDatas() {
         return tagDatas;
     }
 
-    public void setTagDatas(List<CognitiveTagData> tagDatas) {
+    public void setTagDatas(ArrayList<CognitiveTagData> tagDatas) {
         this.tagDatas = tagDatas;
     }
 }

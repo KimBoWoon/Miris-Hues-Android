@@ -12,6 +12,7 @@ import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -60,12 +61,12 @@ public class DataGetThread extends Thread {
                 Logging.i(msg.obj.toString());
                 JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("tags");
 
-                List<CognitiveTagData> example1 = new Gson().fromJson(root, new TypeToken<List<CognitiveTagData>>() {}.getType());
+                ArrayList<CognitiveTagData> example1 = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveTagData>>() {}.getType());
                 DataManager.getInstance().setTagDatas(example1);
 
                 Logging.i(DataManager.getInstance().getTagDatas().get(0).getTagName());
                 Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().get(0).getTagConfidence()));
-
+                Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().size()));
                 Logging.i("Success");
             }
         }
