@@ -35,7 +35,11 @@ public class DataGetThread extends Thread {
             while (true) {
                 if (response.isSuccessful()) {
                     Logging.i(response.body().string());
-                    handler.sendEmptyMessage(0);
+                    Message msg = Message.obtain();
+                    msg.what = 0;
+//                    msg.obj = response.body().string();
+                    msg.obj = "qasdfzxcv";
+                    handler.sendMessage(msg);
                     break;
                 }
             }
@@ -48,6 +52,7 @@ public class DataGetThread extends Thread {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {   // Message id 가 0 이면
+                Logging.i(msg.obj.toString());
                 Logging.i("Success");
             }
         }
