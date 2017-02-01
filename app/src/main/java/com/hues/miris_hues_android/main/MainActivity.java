@@ -1,5 +1,6 @@
 package com.hues.miris_hues_android.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -8,6 +9,7 @@ import com.androidquery.AQuery;
 import com.hues.miris_hues_android.R;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.data.JsonTagDataListViewAdapter;
+import com.hues.miris_hues_android.gps.GPSActivity;
 import com.hues.miris_hues_android.log.Logging;
 
 import butterknife.ButterKnife;
@@ -53,4 +55,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 //        mMainPresenter.getJsonString("http://miris-webapp.azurewebsites.net/text");
 //        jsonTagDataListViewAdapter.notifyDataSetChanged();
 //    }
+
+    @OnClick(R.id.main_btn_gps)
+    public void gpsBtnClicked() {
+        startActivity(new Intent(this, GPSActivity.class));
+    }
 }

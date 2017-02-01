@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:text="@string/main_get_text" />
 
+    <Button
+        android:id="@+id/main_btn_gps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_gps_btn" />
+
     <ListView
         android:id="@+id/json_data_list"
         android:layout_width="match_parent"
