@@ -1,7 +1,6 @@
 package com.hues.miris_hues_android.main;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -39,18 +38,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         listview = (ListView) findViewById(R.id.json_data_list);
         listview.setAdapter(jsonTagDataListViewAdapter);
+        jsonTagDataListViewAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.main_btn_tag)
     public void tagBtnClicked() {
         Logging.i("tagBtnClicked Function");
         mMainPresenter.getJsonString("http://miris-webapp.azurewebsites.net/tag");
-        listview.deferNotifyDataSetChanged();
         jsonTagDataListViewAdapter.notifyDataSetChanged();
     }
 
 //    @OnClick(R.id.main_btn_text)
 //    public void textBtnClicked() {
 //        mMainPresenter.getJsonString("http://miris-webapp.azurewebsites.net/text");
+//        jsonTagDataListViewAdapter.notifyDataSetChanged();
 //    }
 }

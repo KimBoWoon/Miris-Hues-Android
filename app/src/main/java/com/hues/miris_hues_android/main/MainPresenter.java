@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.hues.miris_hues_android.okhttp.OkHttpPresenter;
-
-import java.io.IOException;
+import com.hues.miris_hues_android.okhttp.DataGetThread;
 
 /**
  * Created by secret on 1/27/17.
@@ -15,13 +13,11 @@ import java.io.IOException;
 public class MainPresenter implements MainContract.UserAction {
     private MainContract.View mMainView;
     private MainModel mMainModel;
-    private OkHttpPresenter mOkHttp;
     public static boolean DEBUG = true;
 
     public MainPresenter(MainContract.View view) {
         this.mMainView = view;
         this.mMainModel = new MainModel();
-        this.mOkHttp = new OkHttpPresenter();
     }
 
     public boolean isDebuggable(Context context) {
@@ -41,6 +37,12 @@ public class MainPresenter implements MainContract.UserAction {
 
     @Override
     public void getJsonString(String url) {
-        mOkHttp.run(url);
+        try {
+            DataGetThread dataGetThread = new DataGetThread(url);
+            dataGetThread.start();
+            dataGetThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
