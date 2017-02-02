@@ -5,4 +5,10 @@ package com.hues.miris_hues_android.gps;
  */
 
 public interface GPSContract {
+    interface View {
+        void initView();
+    }
+    interface UserAction {
+
+    }
 }
