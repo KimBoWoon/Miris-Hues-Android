@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import com.hues.miris_hues_android.log.Logging;
 
@@ -30,9 +31,8 @@ public class GPSPresenter implements GPSContract.UserAction {
     // 위도, 경도
     private double lat, lon;
     // 최소 GPS 정보 업데이트 거리 10미터, 최소 GPS 정보 업데이트 시간 밀리세컨이므로 1분
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10, MIN_TIME_BW_UPDATES = 1000 * 60;
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1, MIN_TIME_BW_UPDATES = 1000;
     private LocationManager locationManager;
-    private int coarseLocationPermission, fineLocationPermission;
 
     public GPSPresenter(GPSContract.View view) {
         this.mGpsView = view;
@@ -200,12 +200,12 @@ public class GPSPresenter implements GPSContract.UserAction {
 
         @Override
         public void onProviderEnabled(String s) {
-
+            Toast.makeText((GPSActivity) mGpsView, "GPS Enabled", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderDisabled(String s) {
-
+            Toast.makeText((GPSActivity) mGpsView, "GPS Disabled", Toast.LENGTH_SHORT).show();
         }
     };
 }

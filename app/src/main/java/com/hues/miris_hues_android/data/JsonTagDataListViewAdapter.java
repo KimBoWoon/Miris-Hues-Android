@@ -36,7 +36,7 @@ public class JsonTagDataListViewAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.listview_item, viewGroup, false);
 
-            holder = new JsonTagDataViewHolder(viewGroup);
+            holder = new JsonTagDataViewHolder(view);
             view.setTag(holder);
         } else {
             holder = (JsonTagDataViewHolder) view.getTag();
