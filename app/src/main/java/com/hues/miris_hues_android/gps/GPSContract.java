@@ -7,8 +7,9 @@ package com.hues.miris_hues_android.gps;
 public interface GPSContract {
     interface View {
         void initView();
+        void gpsDataUpdate(double latitude, double longitude);
     }
     interface UserAction {
-
+        void getNewGpsData();
     }
 }

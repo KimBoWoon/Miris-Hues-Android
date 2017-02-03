@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 
+import com.hues.miris_hues_android.log.Logging;
+
 import static android.content.Context.LOCATION_SERVICE;
 
 /**
@@ -40,6 +42,11 @@ public class GPSPresenter implements GPSContract.UserAction {
         this.isGetLocation = false;
 
         getLocation();
+    }
+
+    @Override
+    public void getNewGpsData() {
+        mGpsView.gpsDataUpdate(lat, lon);
     }
 
     private Location getLocation() {
@@ -181,6 +188,7 @@ public class GPSPresenter implements GPSContract.UserAction {
     private LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
+            Logging.i("위도 : " + location.getLatitude() + ", 경도 : " + location.getLongitude());
             lat = location.getLatitude();
             lon = location.getLongitude();
         }

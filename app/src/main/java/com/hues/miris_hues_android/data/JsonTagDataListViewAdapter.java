@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.hues.miris_hues_android.R;
 
@@ -14,6 +13,8 @@ import com.hues.miris_hues_android.R;
  */
 
 public class JsonTagDataListViewAdapter extends BaseAdapter {
+    private JsonTagDataViewHolder holder;
+
     @Override
     public int getCount() {
         return DataManager.getInstance().getTagDatas().size();
@@ -34,15 +35,17 @@ public class JsonTagDataListViewAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.listview_item, viewGroup, false);
-        }
 
-        TextView nameText = (TextView) view.findViewById(R.id.item_name);
-        TextView confidenceText = (TextView) view.findViewById(R.id.item_confidence);
+            holder = new JsonTagDataViewHolder(viewGroup);
+            view.setTag(holder);
+        } else {
+            holder = (JsonTagDataViewHolder) view.getTag();
+        }
 
         CognitiveTagData item = DataManager.getInstance().getTagDatas().get(i);
 
-        nameText.setText(item.getTagName());
-        confidenceText.setText(String.valueOf(item.getTagConfidence()));
+        holder.nameText.setText(item.getTagName());
+        holder.confidenceText.setText(String.valueOf(item.getTagConfidence()));
 
         return view;
     }
