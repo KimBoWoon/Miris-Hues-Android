@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class DataManager {
     private static DataManager ourInstance = new DataManager();
     private ArrayList<CognitiveTagData> tagDatas = new ArrayList<CognitiveTagData>();
+    private ArrayList<CognitiveTextData> textDatas = new ArrayList<CognitiveTextData>();
 
     public static DataManager getInstance() {
         return ourInstance;
@@ -22,5 +23,13 @@ public class DataManager {
 
     public void setTagDatas(ArrayList<CognitiveTagData> tagDatas) {
         this.tagDatas = tagDatas;
+    }
+
+    public ArrayList<CognitiveTextData> getTextDatas() {
+        return textDatas;
+    }
+
+    public void setTextDatas(ArrayList<CognitiveTextData> textDatas) {
+        this.textDatas = textDatas;
     }
 }

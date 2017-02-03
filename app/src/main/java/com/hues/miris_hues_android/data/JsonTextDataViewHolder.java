@@ -9,16 +9,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by secret on 2/3/17.
+ * Created by 보운 on 2017-02-03.
  */
 
-public class JsonTagDataViewHolder {
-    @Bind(R.id.tag_item_name)
-    public TextView nameText;
-    @Bind(R.id.tag_item_confidence)
-    public TextView confidenceText;
+public class JsonTextDataViewHolder {
+    @Bind(R.id.text_item_boundingBox)
+    public TextView boundingBox;
+    @Bind(R.id.text_item_word)
+    public TextView word;
 
-    public JsonTagDataViewHolder(View view) {
+    public JsonTextDataViewHolder(View view) {
         ButterKnife.bind(this, view);
     }
 }

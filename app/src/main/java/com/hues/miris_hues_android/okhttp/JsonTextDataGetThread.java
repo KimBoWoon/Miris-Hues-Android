@@ -8,26 +8,26 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.hues.miris_hues_android.data.CognitiveTagData;
+import com.hues.miris_hues_android.data.CognitiveTextData;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by secret on 1/29/17.
+ * Created by 보운 on 2017-02-04.
  */
 
-public class DataGetThread extends Thread {
+public class JsonTextDataGetThread extends Thread {
     private String url;
     private OkHttpClient mClient;
 
-    public DataGetThread(String url) {
+    public JsonTextDataGetThread(String url) {
         this.url = url;
         mClient = new OkHttpClient();
     }
@@ -59,14 +59,13 @@ public class DataGetThread extends Thread {
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
                 Logging.i(msg.obj.toString());
-                JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("tags");
+                JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("regions");
 
-                ArrayList<CognitiveTagData> example1 = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveTagData>>() {}.getType());
-                DataManager.getInstance().setTagDatas(example1);
+                ArrayList<CognitiveTextData> cognitiveTextDatas = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveTextData>>() {}.getType());
+                DataManager.getInstance().setTextDatas(cognitiveTextDatas);
 
-                Logging.i(DataManager.getInstance().getTagDatas().get(0).getTagName());
-                Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().get(0).getTagConfidence()));
-                Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().size()));
+//                Logging.i("Text Size : " + DataManager.getInstance().getTextDatas().size());
+//                Logging.i("Lines Size : " + DataManager.getInstance().getTextDatas().get(1).getLines().size());
                 Logging.i("Success");
             }
         }

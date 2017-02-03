@@ -9,20 +9,20 @@ import android.widget.BaseAdapter;
 import com.hues.miris_hues_android.R;
 
 /**
- * Created by 보운 on 2017-02-01.
+ * Created by 보운 on 2017-02-03.
  */
 
-public class JsonTagDataListViewAdapter extends BaseAdapter {
-    private JsonTagDataViewHolder holder;
+public class JsonTextDataListViewAdapter extends BaseAdapter {
+    private JsonTextDataViewHolder holder;
 
     @Override
     public int getCount() {
-        return DataManager.getInstance().getTagDatas().size();
+        return DataManager.getInstance().getTextDatas().size();
     }
 
     @Override
     public Object getItem(int i) {
-        return DataManager.getInstance().getTagDatas().get(i);
+        return DataManager.getInstance().getTextDatas().get(i);
     }
 
     @Override
@@ -34,18 +34,18 @@ public class JsonTagDataListViewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.listview_tag_item, viewGroup, false);
+            view = inflater.inflate(R.layout.listview_text_item, viewGroup, false);
 
-            holder = new JsonTagDataViewHolder(view);
+            holder = new JsonTextDataViewHolder(view);
             view.setTag(holder);
         } else {
-            holder = (JsonTagDataViewHolder) view.getTag();
+            holder = (JsonTextDataViewHolder) view.getTag();
         }
 
-        CognitiveTagData item = DataManager.getInstance().getTagDatas().get(i);
+        CognitiveTextData item = DataManager.getInstance().getTextDatas().get(i);
 
-        holder.nameText.setText(item.getTagName());
-        holder.confidenceText.setText(String.valueOf(item.getTagConfidence()));
+        holder.boundingBox.setText(item.getLines().get(i).getWordses().get(i).getBoundingBox());
+        holder.word.setText(item.getLines().get(i).getWordses().get(i).getText());
 
         return view;
     }

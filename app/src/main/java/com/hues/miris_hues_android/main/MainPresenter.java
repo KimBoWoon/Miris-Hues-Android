@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.hues.miris_hues_android.okhttp.DataGetThread;
+import com.hues.miris_hues_android.okhttp.JsonTagDataGetThread;
+import com.hues.miris_hues_android.okhttp.JsonTextDataGetThread;
 
 /**
  * Created by secret on 1/27/17.
@@ -36,11 +37,17 @@ public class MainPresenter implements MainContract.UserAction {
     }
 
     @Override
-    public void getJsonString(String url) {
+    public void getJsonString(String keyword) {
         try {
-            DataGetThread dataGetThread = new DataGetThread(url);
-            dataGetThread.start();
-            dataGetThread.join();
+            if (keyword.equals("tag")) {
+                JsonTagDataGetThread jsonTagDataGetThread = new JsonTagDataGetThread("http://miris-webapp.azurewebsites.net/tag");
+                jsonTagDataGetThread.start();
+                jsonTagDataGetThread.join();
+            } else if (keyword.equals("text")) {
+                JsonTextDataGetThread jsonTextDataGetThread = new JsonTextDataGetThread("http://miris-webapp.azurewebsites.net/text");
+                jsonTextDataGetThread.start();
+                jsonTextDataGetThread.join();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
