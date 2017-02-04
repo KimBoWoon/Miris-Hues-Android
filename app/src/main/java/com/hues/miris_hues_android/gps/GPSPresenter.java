@@ -191,6 +191,7 @@ public class GPSPresenter implements GPSContract.UserAction {
             Logging.i("위도 : " + location.getLatitude() + ", 경도 : " + location.getLongitude());
             lat = location.getLatitude();
             lon = location.getLongitude();
+            mGpsView.gpsDataUpdate(location.getLatitude(), location.getLongitude());
         }
 
         @Override
