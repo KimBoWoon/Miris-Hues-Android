@@ -1,4 +1,4 @@
-package com.hues.miris_hues_android.okhttp;
+package com.hues.miris_hues_android.thread;
 
 import android.os.Handler;
 import android.os.Message;
@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.hues.miris_hues_android.data.CognitiveTagData;
 import com.hues.miris_hues_android.data.CognitiveTextData;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;

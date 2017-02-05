@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         listview = (ListView) findViewById(R.id.json_data_list);
         listview.setAdapter(jsonTagDataListViewAdapter);
         jsonTagDataListViewAdapter.notifyDataSetChanged();
+
+        aq.id(R.id.main_img).image(String.valueOf(DataManager.getInstance().getListBlobItems().get(DataManager.getInstance().getListBlobItems().size() - 2).getUri()));
     }
 
     @OnClick(R.id.main_btn_text)

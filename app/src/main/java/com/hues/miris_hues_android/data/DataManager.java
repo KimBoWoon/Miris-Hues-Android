@@ -1,5 +1,7 @@
 package com.hues.miris_hues_android.data;
 
+import com.microsoft.azure.storage.blob.ListBlobItem;
+
 import java.util.ArrayList;
 
 /**
@@ -9,6 +11,7 @@ public class DataManager {
     private static DataManager ourInstance = new DataManager();
     private ArrayList<CognitiveTagData> tagDatas = new ArrayList<CognitiveTagData>();
     private ArrayList<CognitiveTextData> textDatas = new ArrayList<CognitiveTextData>();
+    private ArrayList<ListBlobItem> listBlobItems = new ArrayList<ListBlobItem>();
 
     public static DataManager getInstance() {
         return ourInstance;
@@ -31,5 +34,13 @@ public class DataManager {
 
     public void setTextDatas(ArrayList<CognitiveTextData> textDatas) {
         this.textDatas = textDatas;
+    }
+
+    public ArrayList<ListBlobItem> getListBlobItems() {
+        return listBlobItems;
+    }
+
+    public void setListBlobItems(ArrayList<ListBlobItem> listBlobItems) {
+        this.listBlobItems = listBlobItems;
     }
 }

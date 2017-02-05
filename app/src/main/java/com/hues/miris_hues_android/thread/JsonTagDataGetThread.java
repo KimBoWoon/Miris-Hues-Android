@@ -1,4 +1,4 @@
-package com.hues.miris_hues_android.okhttp;
+package com.hues.miris_hues_android.thread;
 
 import android.os.Handler;
 import android.os.Message;
@@ -60,7 +60,8 @@ public class JsonTagDataGetThread extends Thread {
                 Logging.i(msg.obj.toString());
                 JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("tags");
 
-                ArrayList<CognitiveTagData> cognitiveTagDatas = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveTagData>>() {}.getType());
+                ArrayList<CognitiveTagData> cognitiveTagDatas = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveTagData>>() {
+                }.getType());
                 DataManager.getInstance().setTagDatas(cognitiveTagDatas);
 
                 Logging.i(DataManager.getInstance().getTagDatas().get(0).getTagName());
