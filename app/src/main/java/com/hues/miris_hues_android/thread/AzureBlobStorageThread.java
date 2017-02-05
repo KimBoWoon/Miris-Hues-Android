@@ -1,10 +1,6 @@
 package com.hues.miris_hues_android.thread;
 
-import android.content.Context;
-
-import com.hues.miris_hues_android.data.Constant;
 import com.hues.miris_hues_android.data.DataManager;
-import com.hues.miris_hues_android.data.SharedStore;
 import com.hues.miris_hues_android.log.Logging;
 import com.microsoft.azure.storage.CloudStorageAccount;
 import com.microsoft.azure.storage.blob.CloudBlobClient;
@@ -28,7 +24,8 @@ public class AzureBlobStorageThread extends Thread {
 
         try {
             // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(url);
+//            CloudStorageAccount storageAccount = CloudStorageAccount.parse(url);
+            CloudStorageAccount storageAccount = CloudStorageAccount.parse("DefaultEndpointsProtocol=http;AccountName=miris;AccountKey=Oki2fkesXIPsAKQlxJdmJIFQI+r4WP1TYXXs8UWM1nMNbdLvkwPwmsgBgWGc2LQnyk9GVzfaIT4kNSL064968A==");
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
 
@@ -39,6 +36,7 @@ public class AzureBlobStorageThread extends Thread {
 
             // Loop over blobs within the container and output the URI to each of them.
             for (ListBlobItem blobItem : container.listBlobs()) {
+                Logging.i(String.valueOf(blobItem.getUri()));
                 DataManager.getInstance().getListBlobItems().add(blobItem);
             }
         } catch (Exception e) {

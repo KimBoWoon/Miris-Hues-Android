@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hues.miris_hues_android.R;
 
@@ -44,8 +46,22 @@ public class JsonTextDataListViewAdapter extends BaseAdapter {
 
         CognitiveTextData item = DataManager.getInstance().getTextDatas().get(i);
 
-        holder.boundingBox.setText(item.getLines().get(i).getWordses().get(i).getBoundingBox());
-        holder.word.setText(item.getLines().get(i).getWordses().get(i).getText());
+//        holder.boundingBox.setText(item.getLines().get(i).getWordses().get(i).getBoundingBox());
+//        holder.word.setText(item.getLines().get(i).getWordses().get(i).getText());
+
+//        holder.boundingBox.setText(item.getBoundingBox());
+//        holder.word.setText(item.getBoundingBox());
+
+        LinearLayout root = (LinearLayout) view.findViewById(R.id.listview_text_layout);
+
+        for (int linesIdx = 0; linesIdx < item.getLines().size(); linesIdx++) {
+            CognitiveTextData.Lines lines = item.getLines().get(linesIdx);
+            for (int wordsesIdx = 0; wordsesIdx < lines.getWordses().size(); wordsesIdx++) {
+                TextView textView = new TextView(view.getContext());
+                textView.setText(lines.getWordses().get(wordsesIdx).getBoundingBox() + "\n" + lines.getWordses().get(wordsesIdx).getText());
+                root.addView(textView);
+            }
+        }
 
         return view;
     }

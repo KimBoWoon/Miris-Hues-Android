@@ -13,9 +13,9 @@ import butterknife.ButterKnife;
  */
 
 public class JsonTextDataViewHolder {
-    @Bind(R.id.text_item_boundingBox)
+//    @Bind(R.id.text_item_boundingBox)
     public TextView boundingBox;
-    @Bind(R.id.text_item_word)
+//    @Bind(R.id.text_item_word)
     public TextView word;
 
     public JsonTextDataViewHolder(View view) {
