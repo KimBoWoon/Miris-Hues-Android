@@ -16,6 +16,9 @@ import com.hues.miris_hues_android.thread.AzureBlobStorageThread;
 import com.hues.miris_hues_android.thread.JsonTagDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTextDataGetThread;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by secret on 1/27/17.
  */
@@ -73,15 +76,15 @@ public class MainPresenter implements MainContract.UserAction {
                             config.getString(Constant.AZURE_ACCOUNT_NAME));
                     SharedStore.setString((MainActivity) mMainView,
                             Constant.AZURE_ACCOUNT_KEY,
-                            config.getString(config.getString(Constant.AZURE_ACCOUNT_KEY)));
+                            config.getString(Constant.AZURE_ACCOUNT_KEY));
                     SharedStore.setBooolean((MainActivity) mMainView,
                             Constant.APP_DEBUG_MODE,
                             config.getBoolean(Constant.APP_DEBUG_MODE));
 
-                    Logging.i(String.valueOf(config.getString("AZURE_STORAGE_CONNECTION_STRING")));
-                    Logging.i(String.valueOf(config.getString("AZURE_ACCOUNT_NAME")));
-                    Logging.i(String.valueOf(config.getString("AZURE_ACCOUNT_KEY")));
-                    Logging.i(String.valueOf(config.getBoolean("APP_DEBUG_MODE")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_STORAGE_CONNECTION_STRING")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_NAME")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_KEY")));
+                    Logging.i(String.valueOf(SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE")));
                 }
             }
         });
@@ -121,7 +124,7 @@ public class MainPresenter implements MainContract.UserAction {
 
     public void getAzureStorage() {
         try {
-            AzureBlobStorageThread azureBlobStorageThread = new AzureBlobStorageThread();
+            AzureBlobStorageThread azureBlobStorageThread = new AzureBlobStorageThread(SharedStore.getString((MainActivity) mMainView, Constant.AZURE_STORAGE_CONNECTION_STRING));
             azureBlobStorageThread.start();
             azureBlobStorageThread.join();
         } catch (InterruptedException e) {
