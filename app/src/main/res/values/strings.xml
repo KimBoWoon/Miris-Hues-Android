@@ -3,5 +3,6 @@
 
     <string name="main_get_text">TEXT</string>
     <string name="main_get_tag">TAG</string>
+    <string name="main_get_description">DESCRIPTION</string>
     <string name="main_gps_btn">GPS</string>
 </resources>

@@ -10,9 +10,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hues.miris_hues_android.data.Constant;
+import com.hues.miris_hues_android.data.JsonDescriptionDataListViewHolder;
 import com.hues.miris_hues_android.data.SharedStore;
 import com.hues.miris_hues_android.log.Logging;
 import com.hues.miris_hues_android.thread.AzureBlobStorageThread;
+import com.hues.miris_hues_android.thread.JsonDescriptionDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTagDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTextDataGetThread;
 
@@ -116,6 +118,10 @@ public class MainPresenter implements MainContract.UserAction {
                 JsonTextDataGetThread jsonTextDataGetThread = new JsonTextDataGetThread("http://miris-webapp.azurewebsites.net/text");
                 jsonTextDataGetThread.start();
                 jsonTextDataGetThread.join();
+            } else if (keyword.equals("description")) {
+                JsonDescriptionDataGetThread jsonDescriptionDataGetThread = new JsonDescriptionDataGetThread("http://miris-webapp.azurewebsites.net/description");
+                jsonDescriptionDataGetThread.start();
+                jsonDescriptionDataGetThread.join();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

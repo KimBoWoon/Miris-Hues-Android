@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.androidquery.AQuery;
 import com.hues.miris_hues_android.R;
 import com.hues.miris_hues_android.data.DataManager;
+import com.hues.miris_hues_android.data.JsonDescriptionDataListViewAdapter;
 import com.hues.miris_hues_android.data.JsonTagDataListViewAdapter;
 import com.hues.miris_hues_android.data.JsonTextDataListViewAdapter;
 import com.hues.miris_hues_android.gps.GPSActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private AQuery aq;
     private JsonTagDataListViewAdapter jsonTagDataListViewAdapter;
     private JsonTextDataListViewAdapter jsonTextDataListViewAdapter;
+    private JsonDescriptionDataListViewAdapter jsonDescriptionDataListViewAdapter;
     private ListView listview;
 
     @Override
@@ -64,6 +66,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         listview = (ListView) findViewById(R.id.json_data_list);
         listview.setAdapter(jsonTextDataListViewAdapter);
         jsonTextDataListViewAdapter.notifyDataSetChanged();
+
+        aq.id(R.id.main_img).image(String.valueOf(DataManager.getInstance().getListBlobItems().get(DataManager.getInstance().getListBlobItems().size() - 2).getUri()));
+    }
+
+    @OnClick(R.id.main_btn_description)
+    public void descriptionBtnClicked() {
+        Logging.i("descriptionBtnClicked Function");
+
+        mMainPresenter.getJsonString("description");
+
+        jsonDescriptionDataListViewAdapter = new JsonDescriptionDataListViewAdapter();
+        listview = (ListView) findViewById(R.id.json_data_list);
+        listview.setAdapter(jsonDescriptionDataListViewAdapter);
+        jsonDescriptionDataListViewAdapter.notifyDataSetChanged();
 
         aq.id(R.id.main_img).image(String.valueOf(DataManager.getInstance().getListBlobItems().get(DataManager.getInstance().getListBlobItems().size() - 2).getUri()));
     }
