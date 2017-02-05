@@ -1,6 +1,7 @@
 package com.hues.miris_hues_android.data;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hues.miris_hues_android.R;
@@ -17,6 +18,8 @@ public class JsonTextDataViewHolder {
     public TextView boundingBox;
 //    @Bind(R.id.text_item_word)
     public TextView word;
+    @Bind(R.id.listview_text_layout)
+    public LinearLayout root;
 
     public JsonTextDataViewHolder(View view) {
         ButterKnife.bind(this, view);
