@@ -28,8 +28,7 @@ public class AzureBlobStorageThread extends Thread {
 
         try {
             // Retrieve storage account from connection-string.
-//            CloudStorageAccount storageAccount = CloudStorageAccount.parse(url);
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse("DefaultEndpointsProtocol=http;AccountName=miris;AccountKey=Oki2fkesXIPsAKQlxJdmJIFQI+r4WP1TYXXs8UWM1nMNbdLvkwPwmsgBgWGc2LQnyk9GVzfaIT4kNSL064968A==");
+            CloudStorageAccount storageAccount = CloudStorageAccount.parse(url);
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
 

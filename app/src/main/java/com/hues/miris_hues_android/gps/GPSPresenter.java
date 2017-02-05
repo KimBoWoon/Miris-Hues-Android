@@ -44,11 +44,6 @@ public class GPSPresenter implements GPSContract.UserAction {
         getLocation();
     }
 
-    @Override
-    public void getNewGpsData() {
-        mGpsView.gpsDataUpdate(lat, lon);
-    }
-
     private Location getLocation() {
         try {
             locationManager = (LocationManager) ((GPSActivity) mGpsView)

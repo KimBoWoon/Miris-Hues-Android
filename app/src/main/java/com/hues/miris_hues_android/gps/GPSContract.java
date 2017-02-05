@@ -10,6 +10,6 @@ public interface GPSContract {
         void gpsDataUpdate(double latitude, double longitude);
     }
     interface UserAction {
-        void getNewGpsData();
+
     }
 }
