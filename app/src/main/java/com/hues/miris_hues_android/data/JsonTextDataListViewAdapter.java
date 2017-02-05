@@ -1,6 +1,7 @@
 package com.hues.miris_hues_android.data;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class JsonTextDataListViewAdapter extends BaseAdapter {
             for (int wordsesIdx = 0; wordsesIdx < lines.getWordses().size(); wordsesIdx++) {
                 TextView textView = new TextView(view.getContext());
                 textView.setText(lines.getWordses().get(wordsesIdx).getBoundingBox() + "\n" + lines.getWordses().get(wordsesIdx).getText());
+                textView.setTextColor(Color.BLACK);
                 root.addView(textView);
             }
         }
