@@ -31,6 +31,12 @@
         android:layout_height="wrap_content"
         android:text="@string/main_gps_btn" />
 
+    <Button
+        android:id="@+id/main_btn_translate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_translate"/>
+
     <ImageView
         android:id="@+id/main_img"
         android:layout_width="match_parent"

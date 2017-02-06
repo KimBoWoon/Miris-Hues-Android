@@ -43,6 +43,8 @@ dependencies {
     compile 'com.google.firebase:firebase-config:9.6.1'
     // Azure Storage
     compile 'com.microsoft.azure.android:azure-storage-android:1.0.0@aar'
+    // Microsoft Translator Java API
+    compile 'com.memetix:microsoft-translator-java-api:0.6.2'
 }
 
 // Add to the bottom of the file
