@@ -24,7 +24,7 @@ public class TranslatePresenter implements TranslateContract.UserAction {
     public void getTranslateText(String inputText) {
         try {
             Logging.i(inputText);
-            String result = Translate.execute(inputText, Language.AUTO_DETECT, Language.KOREAN);
+            String result = Translate.execute(inputText, Language.ENGLISH, Language.KOREAN);
             Logging.i(result);
             mTranslateView.setText(result);
         } catch (Exception e) {
