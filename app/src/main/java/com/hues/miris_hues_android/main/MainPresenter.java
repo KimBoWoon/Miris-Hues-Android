@@ -10,16 +10,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hues.miris_hues_android.data.Constant;
-import com.hues.miris_hues_android.data.JsonDescriptionDataListViewHolder;
 import com.hues.miris_hues_android.data.SharedStore;
 import com.hues.miris_hues_android.log.Logging;
 import com.hues.miris_hues_android.thread.AzureBlobStorageThread;
 import com.hues.miris_hues_android.thread.JsonDescriptionDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTagDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTextDataGetThread;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by secret on 1/27/17.
@@ -79,6 +75,12 @@ public class MainPresenter implements MainContract.UserAction {
                     SharedStore.setString((MainActivity) mMainView,
                             Constant.AZURE_ACCOUNT_KEY,
                             config.getString(Constant.AZURE_ACCOUNT_KEY));
+                    SharedStore.setString((MainActivity) mMainView,
+                            Constant.MIRIS_TRANSLATE,
+                            config.getString(Constant.MIRIS_TRANSLATE));
+                    SharedStore.setString((MainActivity) mMainView,
+                            Constant.TRANSLATE_CLIENT_KEY,
+                            config.getString(Constant.TRANSLATE_CLIENT_KEY));
                     SharedStore.setBooolean((MainActivity) mMainView,
                             Constant.APP_DEBUG_MODE,
                             config.getBoolean(Constant.APP_DEBUG_MODE));
@@ -86,6 +88,8 @@ public class MainPresenter implements MainContract.UserAction {
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_STORAGE_CONNECTION_STRING")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_NAME")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_KEY")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "MIRIS_TRANSLATE")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "TRANSLATE_CLIENT_KEY")));
                     Logging.i(String.valueOf(SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE")));
                 }
             }

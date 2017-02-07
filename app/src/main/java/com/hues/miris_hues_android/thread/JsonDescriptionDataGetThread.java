@@ -8,7 +8,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.hues.miris_hues_android.data.CognitiveDescriptionData;
-import com.hues.miris_hues_android.data.CognitiveTagData;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;
 
