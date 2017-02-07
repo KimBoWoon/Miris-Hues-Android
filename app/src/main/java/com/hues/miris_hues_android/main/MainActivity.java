@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.androidquery.AQuery;
 import com.hues.miris_hues_android.R;
+import com.hues.miris_hues_android.bing.TranslateActivity;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.data.JsonDescriptionDataListViewAdapter;
 import com.hues.miris_hues_android.data.JsonTagDataListViewAdapter;
@@ -87,5 +88,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @OnClick(R.id.main_btn_gps)
     public void gpsBtnClicked() {
         startActivity(new Intent(this, GPSActivity.class));
+    }
+
+    @OnClick(R.id.main_btn_translate)
+    public void translateBtnClicked() {
+        startActivity(new Intent(this, TranslateActivity.class));
     }
 }
