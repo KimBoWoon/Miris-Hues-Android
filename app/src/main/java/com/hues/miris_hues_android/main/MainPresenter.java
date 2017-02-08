@@ -25,11 +25,12 @@ public class MainPresenter implements MainContract.UserAction {
     private MainContract.View mMainView;
     private MainModel mMainModel;
     private FirebaseRemoteConfig config;
-    public static boolean DEBUG = true;
+    public static boolean DEBUG;
 
     public MainPresenter(MainContract.View view) {
         this.mMainView = view;
         this.mMainModel = new MainModel();
+        SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE");
 
         initFirebase();
         getAzureStorage();
