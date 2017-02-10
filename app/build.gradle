@@ -28,7 +28,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     // OKHttp
     compile 'com.squareup.okhttp3:okhttp:+'
-    // AQurey
+    // AQuery
     compile 'com.googlecode.android-query:android-query:+'
     // Butter Knife
     compile 'com.jakewharton:butterknife:7.0.1'

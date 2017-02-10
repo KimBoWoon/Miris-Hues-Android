@@ -17,7 +17,7 @@ public class TranslatePresenter implements TranslateContract.UserAction {
 
     public void getTranslateText(String inputText) {
         try {
-            TextTranslateThread textTranslateThread = new TextTranslateThread((TranslateActivity) mTranslateView,inputText);
+            TextTranslateThread textTranslateThread = new TextTranslateThread((TranslateActivity) mTranslateView, inputText);
             textTranslateThread.start();
             textTranslateThread.join();
             mTranslateView.setText(textTranslateThread.getTranslateText());
