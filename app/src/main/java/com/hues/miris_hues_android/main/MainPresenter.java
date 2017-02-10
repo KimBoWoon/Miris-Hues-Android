@@ -30,10 +30,11 @@ public class MainPresenter implements MainContract.UserAction {
     public MainPresenter(MainContract.View view) {
         this.mMainView = view;
         this.mMainModel = new MainModel();
-        SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE");
 
         initFirebase();
         getAzureStorage();
+
+        DEBUG = SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE");
     }
 
     private void initFirebase() {
