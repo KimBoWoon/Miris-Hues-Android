@@ -23,10 +23,6 @@
         <activity
             android:name=".gps.GPSActivity"
             android:label="@string/main_gps_btn" />
-
-        <activity
-            android:name=".bing.TranslateActivity"
-            android:label="@string/main_activity_translate" />
     </application>
 
 </manifest>

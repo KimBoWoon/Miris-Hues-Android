@@ -17,12 +17,12 @@ public class JsonDescriptionDataListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return DataManager.getInstance().getDescriptionDatas().size();
+        return 1;
     }
 
     @Override
     public Object getItem(int i) {
-        return DataManager.getInstance().getDescriptionDatas().get(i);
+        return DataManager.getInstance().getDescriptionDatas();
     }
 
     @Override
@@ -42,10 +42,9 @@ public class JsonDescriptionDataListViewAdapter extends BaseAdapter {
             holder = (JsonDescriptionDataListViewHolder) view.getTag();
         }
 
-        CognitiveDescriptionData item = DataManager.getInstance().getDescriptionDatas().get(i);
+        String item = DataManager.getInstance().getDescriptionDatas().getText();
 
-        holder.nameText.setText(item.getText());
-        holder.confidenceText.setText(String.valueOf(item.getConfidence()));
+        holder.nameText.setText(item);
 
         return view;
     }

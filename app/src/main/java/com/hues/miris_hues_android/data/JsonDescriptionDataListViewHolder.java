@@ -13,10 +13,8 @@ import butterknife.ButterKnife;
  */
 
 public class JsonDescriptionDataListViewHolder {
-    @Bind(R.id.description_item_name)
+    @Bind(R.id.description_text)
     public TextView nameText;
-    @Bind(R.id.description_item_confidence)
-    public TextView confidenceText;
 
     public JsonDescriptionDataListViewHolder(View view) {
         ButterKnife.bind(this, view);

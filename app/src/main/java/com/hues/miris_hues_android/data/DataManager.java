@@ -11,7 +11,7 @@ public class DataManager {
     private static DataManager ourInstance = new DataManager();
     private ArrayList<CognitiveTagData> tagDatas = new ArrayList<CognitiveTagData>();
     private ArrayList<CognitiveTextData> textDatas = new ArrayList<CognitiveTextData>();
-    private ArrayList<CognitiveDescriptionData> descriptionDatas = new ArrayList<CognitiveDescriptionData>();
+    private CognitiveDescriptionData descriptionDatas = new CognitiveDescriptionData();
     private ArrayList<ListBlobItem> listBlobItems = new ArrayList<ListBlobItem>();
 
     public static DataManager getInstance() {
@@ -45,11 +45,11 @@ public class DataManager {
         this.listBlobItems = listBlobItems;
     }
 
-    public ArrayList<CognitiveDescriptionData> getDescriptionDatas() {
+    public CognitiveDescriptionData getDescriptionDatas() {
         return descriptionDatas;
     }
 
-    public void setDescriptionDatas(ArrayList<CognitiveDescriptionData> descriptionDatas) {
+    public void setDescriptionDatas(CognitiveDescriptionData descriptionDatas) {
         this.descriptionDatas = descriptionDatas;
     }
 }

@@ -6,13 +6,11 @@ import android.os.Message;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.hues.miris_hues_android.data.CognitiveDescriptionData;
 import com.hues.miris_hues_android.data.DataManager;
 import com.hues.miris_hues_android.log.Logging;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -58,15 +56,13 @@ public class JsonDescriptionDataGetThread extends Thread {
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
                 Logging.i(msg.obj.toString());
-                JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("description").getAsJsonObject().get("captions");
+                JsonElement root = new JsonParser().parse(msg.obj.toString()).getAsJsonObject().get("description");
+                Logging.i(root.toString());
 
-                ArrayList<CognitiveDescriptionData> cognitiveDescriptionDatas = new Gson().fromJson(root, new TypeToken<ArrayList<CognitiveDescriptionData>>() {
-                }.getType());
+                CognitiveDescriptionData cognitiveDescriptionDatas = new Gson().fromJson(root, CognitiveDescriptionData.class);
                 DataManager.getInstance().setDescriptionDatas(cognitiveDescriptionDatas);
 
-                Logging.i(DataManager.getInstance().getDescriptionDatas().get(0).getText());
-                Logging.i(String.valueOf(DataManager.getInstance().getDescriptionDatas().get(0).getConfidence()));
-                Logging.i(String.valueOf(DataManager.getInstance().getTagDatas().size()));
+                Logging.i(DataManager.getInstance().getDescriptionDatas().getText());
                 Logging.i("Success");
             }
         }
