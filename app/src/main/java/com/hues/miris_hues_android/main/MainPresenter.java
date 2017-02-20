@@ -12,7 +12,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hues.miris_hues_android.data.Constant;
 import com.hues.miris_hues_android.data.SharedStore;
 import com.hues.miris_hues_android.log.Logging;
-import com.hues.miris_hues_android.thread.AzureBlobStorageThread;
 import com.hues.miris_hues_android.thread.JsonDescriptionDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTagDataGetThread;
 import com.hues.miris_hues_android.thread.JsonTextDataGetThread;
@@ -30,6 +29,10 @@ public class MainPresenter implements MainContract.UserAction {
     public MainPresenter(MainContract.View view) {
         this.mMainView = view;
         this.mMainModel = new MainModel();
+
+        new JsonTagDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TAG)).start();
+        new JsonTextDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TEXT)).start();
+        new JsonDescriptionDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_DESCRIPTION)).start();
 
         initFirebase();
         getAzureStorage();
@@ -86,12 +89,24 @@ public class MainPresenter implements MainContract.UserAction {
                     SharedStore.setBooolean((MainActivity) mMainView,
                             Constant.APP_DEBUG_MODE,
                             config.getBoolean(Constant.APP_DEBUG_MODE));
+                    SharedStore.setString((MainActivity) mMainView,
+                            Constant.MIRIS_ANDROID_TAG,
+                            config.getString(Constant.MIRIS_ANDROID_TAG));
+                    SharedStore.setString((MainActivity) mMainView,
+                            Constant.MIRIS_ANDROID_TEXT,
+                            config.getString(Constant.MIRIS_ANDROID_TEXT));
+                    SharedStore.setString((MainActivity) mMainView,
+                            Constant.MIRIS_ANDROID_DESCRIPTION,
+                            config.getString(Constant.MIRIS_ANDROID_DESCRIPTION));
 
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_STORAGE_CONNECTION_STRING")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_NAME")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "AZURE_ACCOUNT_KEY")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "MIRIS_TRANSLATE")));
                     Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "TRANSLATE_CLIENT_KEY")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "MIRIS_ANDROID_TAG")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "MIRIS_ANDROID_TEXT")));
+                    Logging.i(String.valueOf(SharedStore.getString((MainActivity) mMainView, "MIRIS_ANDROID_DESCRIPTION")));
                     Logging.i(String.valueOf(SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE")));
                 }
             }
@@ -115,32 +130,20 @@ public class MainPresenter implements MainContract.UserAction {
 
     @Override
     public void getJsonString(String keyword) {
-        try {
-            if (keyword.equals("tag")) {
-                JsonTagDataGetThread jsonTagDataGetThread = new JsonTagDataGetThread("http://miris-webapp.azurewebsites.net/tag");
-                jsonTagDataGetThread.start();
-                jsonTagDataGetThread.join();
-            } else if (keyword.equals("text")) {
-                JsonTextDataGetThread jsonTextDataGetThread = new JsonTextDataGetThread("http://miris-webapp.azurewebsites.net/text");
-                jsonTextDataGetThread.start();
-                jsonTextDataGetThread.join();
-            } else if (keyword.equals("description")) {
-                JsonDescriptionDataGetThread jsonDescriptionDataGetThread = new JsonDescriptionDataGetThread("http://miris-webapp.azurewebsites.net/description");
-                jsonDescriptionDataGetThread.start();
-                jsonDescriptionDataGetThread.join();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        switch (keyword) {
+            case "tag":
+                mMainModel.jsonTagDataThreadStart(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TAG));
+                break;
+            case "text":
+                mMainModel.jsonTextDataThreadStart(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TEXT));
+                break;
+            case "description":
+                mMainModel.jsonDescriptionDataThreadStart(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_DESCRIPTION));
+                break;
         }
     }
 
     public void getAzureStorage() {
-        try {
-            AzureBlobStorageThread azureBlobStorageThread = new AzureBlobStorageThread(SharedStore.getString((MainActivity) mMainView, Constant.AZURE_STORAGE_CONNECTION_STRING));
-            azureBlobStorageThread.start();
-            azureBlobStorageThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        mMainModel.getAzureStorage(SharedStore.getString((MainActivity) mMainView, Constant.AZURE_STORAGE_CONNECTION_STRING));
     }
 }
