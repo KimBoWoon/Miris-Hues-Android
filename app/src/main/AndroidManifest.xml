@@ -23,6 +23,19 @@
         <activity
             android:name=".gps.GPSActivity"
             android:label="@string/main_gps_btn" />
+
+        <!-- fb messaging start -->
+        <service android:name=".fcm.FCMListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".fcm.FCMInstanceListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- fb messaging end -->
     </application>
 
 </manifest>

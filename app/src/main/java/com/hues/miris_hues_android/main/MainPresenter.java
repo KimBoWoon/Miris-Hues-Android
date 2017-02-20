@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hues.miris_hues_android.data.Constant;
@@ -30,12 +31,13 @@ public class MainPresenter implements MainContract.UserAction {
         this.mMainView = view;
         this.mMainModel = new MainModel();
 
+        initFirebase();
+        getAzureStorage();
+        getToken();
+
         new JsonTagDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TAG)).start();
         new JsonTextDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TEXT)).start();
         new JsonDescriptionDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_DESCRIPTION)).start();
-
-        initFirebase();
-        getAzureStorage();
 
         DEBUG = SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE");
     }
@@ -111,6 +113,14 @@ public class MainPresenter implements MainContract.UserAction {
                 }
             }
         });
+    }
+
+    private void getToken() {
+        String token = FirebaseInstanceId.getInstance().getToken();
+        if (token != null) {
+            SharedStore.setString((MainActivity) mMainView, "token", token);
+            Logging.i(token);
+        }
     }
 
     public boolean isDebuggable(Context context) {
