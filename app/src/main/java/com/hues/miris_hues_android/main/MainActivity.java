@@ -88,4 +88,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void gpsBtnClicked() {
         startActivity(new Intent(this, GPSActivity.class));
     }
+
+    @OnClick(R.id.intro)
+    public void Intro() {
+        Intent i = new Intent(getApplicationContext(), TextToSpeechActivity.class);
+        startActivity(i);
+    }
 }

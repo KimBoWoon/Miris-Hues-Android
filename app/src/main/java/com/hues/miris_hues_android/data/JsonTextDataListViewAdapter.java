@@ -50,7 +50,7 @@ public class JsonTextDataListViewAdapter extends BaseAdapter {
             CognitiveTextData.Lines lines = item.getLines().get(linesIdx);
             for (int wordsesIdx = 0; wordsesIdx < lines.getWordses().size(); wordsesIdx++) {
                 TextView textView = new TextView(view.getContext());
-                textView.setText(lines.getWordses().get(wordsesIdx).getBoundingBox() + "\n" + lines.getWordses().get(wordsesIdx).getText());
+                textView.setText(lines.getWordses().get(wordsesIdx).getText());
                 textView.setTextColor(Color.BLACK);
                 holder.root.addView(textView);
             }

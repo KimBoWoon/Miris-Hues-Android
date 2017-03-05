@@ -13,9 +13,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.hues.miris_hues_android.data.Constant;
 import com.hues.miris_hues_android.data.SharedStore;
 import com.hues.miris_hues_android.log.Logging;
-import com.hues.miris_hues_android.thread.JsonDescriptionDataGetThread;
-import com.hues.miris_hues_android.thread.JsonTagDataGetThread;
-import com.hues.miris_hues_android.thread.JsonTextDataGetThread;
 
 /**
  * Created by secret on 1/27/17.
@@ -35,9 +32,9 @@ public class MainPresenter implements MainContract.UserAction {
         getAzureStorage();
         getToken();
 
-        new JsonTagDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TAG)).start();
-        new JsonTextDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_TEXT)).start();
-        new JsonDescriptionDataGetThread(SharedStore.getString((MainActivity) mMainView, Constant.MIRIS_ANDROID_DESCRIPTION)).start();
+//        new JsonTagDataGetThread(SharedStore.getString((BotActivity) mMainView, Constant.MIRIS_ANDROID_TAG)).start();
+//        new JsonTextDataGetThread(SharedStore.getString((BotActivity) mMainView, Constant.MIRIS_ANDROID_TEXT)).start();
+//        new JsonDescriptionDataGetThread(SharedStore.getString((BotActivity) mMainView, Constant.MIRIS_ANDROID_DESCRIPTION)).start();
 
         DEBUG = SharedStore.getBoolean((MainActivity) mMainView, "APP_DEBUG_MODE");
     }
